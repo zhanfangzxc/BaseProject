@@ -1,0 +1,37 @@
+ext {
+
+    minSdkVersion = 9
+    targetSdkVersion = 24
+    compileSdkVersion = 24
+    buildToolsVersion = '24.0.2'
+    sourceCompatibilityVersion = JavaVersion.VERSION_1_8
+    targetCompatibilityVersion = JavaVersion.VERSION_1_8
+
+    supportLibraryVersion = '25.0.0'
+    butterknifeVersion = '8.4.0'
+    rxBindingVersion = '0.4.0'
+    rxAndroidVersion = '1.2.1'
+    rxJavaVersion = '1.1.6'
+    retrofitVersion = '2.1.0'
+    okhttpVersion = '3.4.1'
+    gsonVersion = '2.7'
+
+    deps = [
+            appcompat            : "com.android.support:appcompat-v7:${supportLibraryVersion}",
+            design               : "com.android.support:design:${supportLibraryVersion}",
+            supportV4            : "com.android.support:support-v4:${supportLibraryVersion}",
+            recyclerView         : "com.android.support:recyclerview-v7:${supportLibraryVersion}",
+            butterknife          : "com.jakewharton:butterknife:${butterknifeVersion}",
+            butterknifeCompiler  : "com.jakewharton:butterknife-compiler:${butterknifeVersion}",
+            rxBinding            : "com.jakewharton.rxbinding:rxbinding:${rxBindingVersion}",
+            rxAndroid            : "io.reactivex:rxandroid:${rxAndroidVersion}",
+            rxJava               : "io.reactivex:rxjava:${rxJavaVersion}",
+            retrofit             : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            retrofitGsonConverter: "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            retrofitRxJavaAdpter : "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
+            okhttp               : "com.squareup.okhttp3:okhttp:${okhttpVersion}",
+            okhttpLogInterceptor : "com.squareup.okhttp3:logging-interceptor:${okhttpVersion}",
+            gson                 : "com.google.code.gson:gson:${gsonVersion}"
+
+    ]
+}

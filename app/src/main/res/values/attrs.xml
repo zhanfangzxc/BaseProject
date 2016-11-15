@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<<<<<<< HEAD
     <declare-styleable name="StatusLayout">
         <attr name="loadingProgressBarWidth" format="dimension" />
         <attr name="loadingProgressBarHeight" format="dimension" />
@@ -29,5 +30,16 @@
         <attr name="civ_border_overlay" format="color"/>
         <attr name="civ_fill_color" format="color"/>
 
+=======
+    <declare-styleable name="StateView">
+    </declare-styleable>
+
+    <declare-styleable name="FButton">
+        <attr name="shadowEnabled" format="boolean"/>
+        <attr name="buttonColor" format="color"/>
+        <attr name="shadowColor" format="color"/>
+        <attr name="shadowHeight" format="dimension"/>
+        <attr name="cornerRadius" format="dimension"/>
+>>>>>>> 4d771bd1d895cc8bd0388d242f133b00b13b91ec
     </declare-styleable>
 </resources>
