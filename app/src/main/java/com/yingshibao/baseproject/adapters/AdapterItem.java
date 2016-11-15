@@ -1,4 +1,4 @@
-package com.yingshibao.baseproject.adapter;
+package com.yingshibao.baseproject.adapters;
 
 import android.content.Context;
 import android.support.annotation.LayoutRes;

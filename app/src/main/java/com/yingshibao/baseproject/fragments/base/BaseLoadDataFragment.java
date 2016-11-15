@@ -1,4 +1,4 @@
-package com.yingshibao.baseproject.fragment.base;
+package com.yingshibao.baseproject.fragments.base;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.yingshibao.baseproject.R;
 import com.yingshibao.baseproject.model.BaseResponseModel;
+import com.yingshibao.baseproject.ui.StateView;
 
 import butterknife.BindView;
 import rx.Observable;
@@ -19,16 +20,16 @@ import rx.subscriptions.CompositeSubscription;
 
 /**
  * 加载数据的Fragment
+ *
  * @param <T>
  */
-public abstract class BaseLoadDataFragment<T> extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener{
+public abstract class BaseLoadDataFragment<T> extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
-  //  @BindView(R.id.rootView) LoadingView mLoadingView;
+    @BindView(R.id.state_view) StateView mStateView;
     @BindView(R.id.swipeRefreshLayout) SwipeRefreshLayout mSwipeRefreshLayout;
 
 
     private Handler mHandler;
-
 
 
     private Runnable mDeplayedLoadDataTask = () -> getData();
@@ -62,7 +63,7 @@ public abstract class BaseLoadDataFragment<T> extends BaseFragment implements Sw
                     @Override
                     public Observable<T> call(BaseResponseModel<T> tBaseResponseModel) {
                         return Observable.create(subscriber -> {
-                           // subscriber.onNext(tBaseResponseModel.getResult());
+                            // subscriber.onNext(tBaseResponseModel.getResult());
                             subscriber.onCompleted();
                         });
                     }
@@ -77,7 +78,6 @@ public abstract class BaseLoadDataFragment<T> extends BaseFragment implements Sw
         addSubscrebe(rxSubscription);
 
     }
-
 
 
     public void setupSwipeRefreshLayout() {
@@ -100,15 +100,16 @@ public abstract class BaseLoadDataFragment<T> extends BaseFragment implements Sw
 //        }
     }
 
-    public boolean isShowRefreshView(){
+    public boolean isShowRefreshView() {
         return true;
     }
+
     /**
      * 是否显示ErrorView 当分页的时候只有当pageCount=1的时候才显示
      *
      * @return
      */
-    public  boolean isShowErrorView(){
+    public boolean isShowErrorView() {
         return true;
     }
 
@@ -117,22 +118,23 @@ public abstract class BaseLoadDataFragment<T> extends BaseFragment implements Sw
      *
      * @return
      */
-    public  boolean isShowEmptyView(){
+    public boolean isShowEmptyView() {
         return true;
     }
 
     public abstract boolean isEmpty(T t);//数据是否为空
 
     public void handleResult(T t) {
+        //如果数据是空的并且isShowEmptyView为true,则显示
         if (isEmpty(t) && isShowEmptyView()) {
-            showEmptyView();//显示空的页面
+            mStateView.showEmpty("没有数据");
             return;
         }
-       // mLoadingView.showContent();
+        mStateView.showContent();
     }
 
-    public void handleComplete(){
-        if(mSwipeRefreshLayout.isRefreshing()){
+    public void handleComplete() {
+        if (mSwipeRefreshLayout.isRefreshing()) {
             mSwipeRefreshLayout.setRefreshing(false);
         }
     }
@@ -144,15 +146,9 @@ public abstract class BaseLoadDataFragment<T> extends BaseFragment implements Sw
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public void showEmptyView() {
-        //mLoadingView.showEmpty(null, getResources().getString(R.string.no_products_found), getResources().getString(R.string.no_data));
-    }
 
     public void showNetWorkErrorView() {
-//        mLoadingView.showError(null, getString(R.string.no_connection), getString(R.string.no_network), "Try Again", view -> {
-//            mLoadingView.showLoading();
-//            mHandler.postDelayed(mDeplayedLoadDataTask,500);
-//        });
+
     }
 
     @Override
@@ -164,6 +160,6 @@ public abstract class BaseLoadDataFragment<T> extends BaseFragment implements Sw
     @Override
     public void onRefresh() {
         mSwipeRefreshLayout.setRefreshing(true);
-        mHandler.postDelayed(mDeplayedLoadDataTask,500);
+        mHandler.postDelayed(mDeplayedLoadDataTask, 500);
     }
 }

@@ -1,4 +1,4 @@
-package com.yingshibao.baseproject.fragment.base;
+package com.yingshibao.baseproject.fragments.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

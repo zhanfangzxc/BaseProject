@@ -1,4 +1,4 @@
-package com.yingshibao.baseproject.fragment.base;
+package com.yingshibao.baseproject.fragments.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,8 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.yingshibao.baseproject.R;
-import com.yingshibao.baseproject.adapter.AdapterItem;
-import com.yingshibao.baseproject.adapter.BaseRecyclerViewAdapter;
+import com.yingshibao.baseproject.adapters.BaseRecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +18,7 @@ import butterknife.BindView;
  *
  * @param <T>
  */
-public abstract class BaseListLoadDataFragment<T> extends BaseLoadDataFragment<List<T>> implements BaseRecyclerViewAdapter.OnItemClickListener {
+public abstract class BaseListLoadDataFragment<T> extends BaseLoadDataFragment<List<T>> implements  BaseRecyclerViewAdapter.OnItemClickListener {
     @BindView(R.id.recyclerview) public RecyclerView mRecyclerView;
     protected List<T> mDataList;
     protected RecyclerView.LayoutManager mLayoutManager;
@@ -40,12 +39,7 @@ public abstract class BaseListLoadDataFragment<T> extends BaseLoadDataFragment<L
 
     public void setupRecyclerView() {
         mLayoutManager = getLayoutManager();
-        mAdapter = new BaseRecyclerViewAdapter<T>(getActivity(), mDataList) {
-            @Override
-            public AdapterItem<T> createAdapterItem() {
-                return getAdapterItem();
-            }
-        };
+        mAdapter = createAdatper();
         mAdapter.setOnItemClickListener(this);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setAdapter(mAdapter);
@@ -54,7 +48,7 @@ public abstract class BaseListLoadDataFragment<T> extends BaseLoadDataFragment<L
 
     public abstract RecyclerView.LayoutManager getLayoutManager();
 
-    public abstract AdapterItem<T> getAdapterItem();
+    public abstract  BaseRecyclerViewAdapter<T> createAdatper();
 
     public abstract boolean isClear();//是否清除所有
 
