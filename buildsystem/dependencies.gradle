@@ -15,6 +15,10 @@ ext {
     retrofitVersion = '2.1.0'
     okhttpVersion = '3.4.1'
     gsonVersion = '2.7'
+    frescoVersion = '0.14.1'
+    daggerVersion = '2.7'
+    timberVersion = '4.3.1'
+    glideVersion = '3.7.0'
 
     deps = [
             appcompat            : "com.android.support:appcompat-v7:${supportLibraryVersion}",
@@ -31,7 +35,10 @@ ext {
             retrofitRxJavaAdpter : "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
             okhttp               : "com.squareup.okhttp3:okhttp:${okhttpVersion}",
             okhttpLogInterceptor : "com.squareup.okhttp3:logging-interceptor:${okhttpVersion}",
-            gson                 : "com.google.code.gson:gson:${gsonVersion}"
-
+            gson                 : "com.google.code.gson:gson:${gsonVersion}",
+            fresco               : "com.facebook.fresco:fresco:${frescoVersion}",
+            dagger               : "com.google.dagger:dagger:${daggerVersion}",
+            timber               : "com.jakewharton.timber:timber:${timberVersion}",
+            glide                : "com.github.bumptech.glide:glide:${glideVersion}"
     ]
 }

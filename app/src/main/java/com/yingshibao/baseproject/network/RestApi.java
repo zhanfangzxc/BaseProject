@@ -57,7 +57,6 @@ public class RestApi {
                 .addCallAdapterFactory(RxErrorHandlingCallAdapterFactory.create())
                 .build();
         return retrofit;
-
     }
 
 }

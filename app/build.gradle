@@ -29,26 +29,6 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-//<<<<<<< HEAD
-//    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-//        exclude group: 'com.android.support', module: 'support-annotations'
-//    })
-//    compile 'com.android.support:appcompat-v7:25.0.0'
-//    testCompile 'junit:junit:4.12'
-//    compile 'com.facebook.fresco:fresco:0.14.1'
-//    compile 'com.android.support:recyclerview-v7:25.0.0'
-//    compile 'com.android.support:support-v4:25.0.0'
-//    compile 'com.android.support:design:25.0.0'
-//    compile 'com.jakewharton:butterknife:8.4.0'
-//    compile 'com.squareup:otto:1.3.8'
-//    compile 'com.google.dagger:dagger:2.7'
-//    compile 'io.reactivex:rxandroid:1.2.1'
-//    compile 'io.reactivex:rxjava:1.1.6'
-//    compile 'com.jakewharton.timber:timber:4.3.1'
-//    compile 'com.malinskiy:materialicons:1.0.2'
-//    compile 'com.github.bumptech.glide:glide:3.7.0'
-//=======
-
     def deps = rootProject.ext.deps
     compile deps.appcompat
     compile deps.supportV4
@@ -64,4 +44,9 @@ dependencies {
     compile deps.okhttp
     compile deps.okhttpLogInterceptor
     compile deps.gson
+    compile deps.fresco
+    compile deps.dagger
+    compile deps.timber
+    compile deps.glide
+
 }
