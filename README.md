@@ -19,8 +19,10 @@
     * RestApi：Retrofit封装
     * RetrofitException：
     * RxErrorHandlingCallAdapterFactory：错误处理
-### 工具类
+* 工具类
     * 参考：https://github.com/Blankj/AndroidUtilCode
+* 数据库
+    * https://www.cnblogs.com/whoislcj/p/5651396.html
 
 
 

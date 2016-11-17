@@ -1,5 +1,6 @@
 package com.yingshibao.baseproject.network;
 
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
@@ -20,7 +21,7 @@ import retrofit2.Retrofit;
 public class RestApi {
 
 
-    public static final String BASE_URL= "";
+    public static final String BASE_URL = "";
 
     private static ApiService mApiService;
 
@@ -36,8 +37,9 @@ public class RestApi {
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(logging)
+                .addInterceptor(new StethoInterceptor())
                 .connectTimeout(30, TimeUnit.SECONDS)//超时时间
-                .readTimeout(30,TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
                 .build();
         //
         ExclusionStrategy exclusionStrategy = new ExclusionStrategy() {

@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'org.greenrobot.greendao'
+
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -21,10 +23,21 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java', 'src/main/java-gen']
+        }
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile 'junit:junit:4.12'
+
     def deps = rootProject.ext.deps
     compile deps.appcompat
     compile deps.supportV4
@@ -44,5 +57,8 @@ dependencies {
     compile deps.dagger
     compile deps.timber
     compile deps.glide
+    compile deps.greenDao
+    compile deps.stetho
+    compile deps.stethoOkhttp3
 
 }
