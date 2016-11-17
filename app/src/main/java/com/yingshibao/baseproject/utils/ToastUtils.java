@@ -3,8 +3,6 @@ package com.yingshibao.baseproject.utils;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.yingshibao.baseproject.injection.scope.ApplicationContext;
-
 import javax.inject.Inject;
 
 /**
@@ -19,7 +17,7 @@ public class ToastUtils {
     private Toast mToast;
 
     @Inject
-    private ToastUtils(@ApplicationContext Context context) {
+    private ToastUtils( Context context) {
         mContext = context;
     }
 
