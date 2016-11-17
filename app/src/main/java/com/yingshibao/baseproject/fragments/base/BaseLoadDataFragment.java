@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.yingshibao.baseproject.R;
 import com.yingshibao.baseproject.model.BaseResponseModel;
-import com.yingshibao.baseproject.ui.StateView;
+import com.yingshibao.baseproject.view.StateView;
 
 import butterknife.BindView;
 import rx.Observable;

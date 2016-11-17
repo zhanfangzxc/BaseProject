@@ -18,7 +18,7 @@ import butterknife.BindView;
  *
  * @param <T>
  */
-public abstract class BaseListLoadDataFragment<T> extends BaseLoadDataFragment<List<T>> implements  BaseRecyclerViewAdapter.OnItemClickListener {
+public abstract class BaseListLoadDataFragment<T> extends BaseLoadDataFragment<List<T>> implements BaseRecyclerViewAdapter.OnItemClickListener {
     @BindView(R.id.recyclerview) public RecyclerView mRecyclerView;
     protected List<T> mDataList;
     protected RecyclerView.LayoutManager mLayoutManager;
@@ -48,7 +48,7 @@ public abstract class BaseListLoadDataFragment<T> extends BaseLoadDataFragment<L
 
     public abstract RecyclerView.LayoutManager getLayoutManager();
 
-    public abstract  BaseRecyclerViewAdapter<T> createAdatper();
+    public abstract BaseRecyclerViewAdapter<T> createAdatper();
 
     public abstract boolean isClear();//是否清除所有
 
@@ -67,6 +67,5 @@ public abstract class BaseListLoadDataFragment<T> extends BaseLoadDataFragment<L
 
     @Override
     public void onItemClick(View v, int position) {
-
     }
 }

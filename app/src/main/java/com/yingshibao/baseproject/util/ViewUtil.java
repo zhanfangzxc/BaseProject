@@ -1,4 +1,4 @@
-package com.yingshibao.baseproject.utils;
+package com.yingshibao.baseproject.util;
 
 import android.app.Activity;
 import android.content.Context;

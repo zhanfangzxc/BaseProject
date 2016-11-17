@@ -1,4 +1,4 @@
-package com.yingshibao.baseproject.ui;
+package com.yingshibao.baseproject.view;
 
 import android.content.Context;
 import android.content.res.Resources;

@@ -1,4 +1,4 @@
-package com.yingshibao.baseproject.ui;
+package com.yingshibao.baseproject.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -18,10 +18,10 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.yingshibao.baseproject.R.id.tv_error_hint;
-import static com.yingshibao.baseproject.ui.StateView.State.CONTENT;
-import static com.yingshibao.baseproject.ui.StateView.State.EMPTY;
-import static com.yingshibao.baseproject.ui.StateView.State.ERROR;
-import static com.yingshibao.baseproject.ui.StateView.State.LOADING;
+import static com.yingshibao.baseproject.view.StateView.State.CONTENT;
+import static com.yingshibao.baseproject.view.StateView.State.EMPTY;
+import static com.yingshibao.baseproject.view.StateView.State.ERROR;
+import static com.yingshibao.baseproject.view.StateView.State.LOADING;
 
 /**
  * @author malinkang
