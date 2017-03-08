@@ -1,26 +1,46 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'org.greenrobot.greendao'
+apply plugin: 'com.google.gms.google-services'
+
 
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
-        applicationId "com.yingshibao.baseproject"
+        applicationId "gift.makemoney"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
     }
+    signingConfigs {
+
+        release {
+            storeFile file("test.keystore")
+            keyAlias "mimofuli"
+            storePassword "ldfs321"
+            keyPassword "ldfs321"
+        }
+    }
+
     compileOptions {
         sourceCompatibility rootProject.ext.sourceCompatibilityVersion
         targetCompatibility rootProject.ext.sourceCompatibilityVersion
     }
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+
         }
     }
 
@@ -37,7 +57,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testCompile 'junit:junit:4.12'
-
     def deps = rootProject.ext.deps
     compile deps.appcompat
     compile deps.supportV4
@@ -60,5 +79,7 @@ dependencies {
     compile deps.greenDao
     compile deps.stetho
     compile deps.stethoOkhttp3
+    compile 'com.google.firebase:firebase-ads:10.0.1'
+    compile 'com.airbnb.android:lottie:1.5.3'
 
 }

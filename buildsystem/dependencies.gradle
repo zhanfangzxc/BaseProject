@@ -1,23 +1,21 @@
 ext {
-
-    minSdkVersion = 9
+    minSdkVersion = 14
     targetSdkVersion = 25
     compileSdkVersion = 25
-    buildToolsVersion = '24.0.2'
+    buildToolsVersion = '25.0.2'
     sourceCompatibilityVersion = JavaVersion.VERSION_1_8
     targetCompatibilityVersion = JavaVersion.VERSION_1_8
-
-    supportLibraryVersion = '25.0.0'
+    supportLibraryVersion = '25.2.0'
     butterknifeVersion = '8.4.0'
-    rxBindingVersion = '0.4.0'
+    rxBindingVersion = '2.0.0'
     rxAndroidVersion = '1.2.1'
     rxJavaVersion = '1.1.6'
-    retrofitVersion = '2.1.0'
-    okhttpVersion = '3.4.1'
-    gsonVersion = '2.7'
-    frescoVersion = '0.14.1'
+    retrofitVersion = '2.2.0'
+    okhttpVersion = '3.6.0'
+    gsonVersion = '2.8.0'
+    frescoVersion = '1.1.0'
     daggerVersion = '2.7'
-    timberVersion = '4.3.1'
+    timberVersion = '4.5.1'
     glideVersion = '3.7.0'
     greenDaoVersion = '3.2.0'
     stethoVersion = '1.4.1'

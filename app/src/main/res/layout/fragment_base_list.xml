@@ -7,19 +7,10 @@
     android:orientation="vertical">
 
 
-    <com.yingshibao.baseproject.view.StateView
-        android:id="@+id/state_view"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"/>
-
-    </com.yingshibao.baseproject.view.StateView>
+        android:layout_height="match_parent"/>
 
 
 </android.support.v4.widget.SwipeRefreshLayout>

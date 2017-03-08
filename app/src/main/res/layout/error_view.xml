@@ -32,7 +32,7 @@
             android:textColor="#666666"
             android:textSize="14sp"/>
 
-        <com.yingshibao.baseproject.view.FButton
+        <gift.makemoney.view.FButton
             android:id="@+id/btn_retry"
             android:layout_width="96dp"
             android:layout_height="48dp"
