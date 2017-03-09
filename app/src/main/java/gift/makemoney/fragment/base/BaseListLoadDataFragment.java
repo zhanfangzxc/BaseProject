@@ -66,6 +66,5 @@ public abstract class BaseListLoadDataFragment<T> extends BaseLoadDataFragment<L
     }
 
     @Override
-    public void onItemClick(View v, int position) {
-    }
+    public void onItemClick(View v, int position) {}
 }

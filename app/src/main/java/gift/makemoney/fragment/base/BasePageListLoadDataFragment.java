@@ -27,8 +27,8 @@ public abstract class BasePageListLoadDataFragment<T> extends BaseListLoadDataFr
     private View mFooterView;
 
     @Override
-    public boolean isShowRefreshView() {
-        return mPageCount == 1;
+    public boolean isShowLoadingView() {
+        return mPageCount == 1&&!mSwipeRefreshLayout.isRefreshing();
     }
 
     @Override

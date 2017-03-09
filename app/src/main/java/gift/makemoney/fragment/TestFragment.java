@@ -1,16 +1,11 @@
 package gift.makemoney.fragment;
 
 
-import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.google.android.gms.ads.AdView;
-
 import java.util.List;
 
-import butterknife.BindView;
-import gift.makemoney.R;
 import gift.makemoney.adapters.AdapterItem;
 import gift.makemoney.adapters.HeaderAndFooterRecyclerViewAdapter;
 import gift.makemoney.adapters.UnsplashAdapterItem;
@@ -25,7 +20,6 @@ import rx.Observable;
 
 public class TestFragment extends BasePageListLoadDataFragment<Unsplash> {
 
-    @Nullable @BindView(R.id.tv_empty_hint) AdView mAdView;
 
     @Override
     public RecyclerView.LayoutManager getLayoutManager() {

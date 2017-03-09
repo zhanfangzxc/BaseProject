@@ -8,6 +8,8 @@ import android.view.View;
 
 import butterknife.BindView;
 import gift.makemoney.R;
+import gift.makemoney.network.RetrofitException;
+import gift.makemoney.widget.StateView;
 import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -21,7 +23,7 @@ import rx.subscriptions.CompositeSubscription;
  */
 public abstract class BaseLoadDataFragment<T> extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    //    @BindView(R.id.state_view) StateView mStateView;
+    @BindView(R.id.state_view) StateView mStateView;
     @BindView(R.id.swipeRefreshLayout) SwipeRefreshLayout mSwipeRefreshLayout;
 
 
@@ -53,6 +55,10 @@ public abstract class BaseLoadDataFragment<T> extends BaseFragment implements Sw
     }
 
     public void getData() {
+        if (isShowLoadingView()) {
+            mStateView.showLoading();
+            mSwipeRefreshLayout.setEnabled(false);
+        }
         Subscription rxSubscription = getApi()
                 .compose(rxSchedulerHelper())
                 .subscribe(this::handleResult, this::handleError,
@@ -75,14 +81,14 @@ public abstract class BaseLoadDataFragment<T> extends BaseFragment implements Sw
 
     //
     public void handleError(Throwable throwable) {
-//        if (throwable instanceof RetrofitException) {
-//            if (((RetrofitException) throwable).getKind() == RetrofitException.Kind.NETWORK && isShowErrorView()) {
-//                showNetWorkErrorView();
-//            }
-//        }
+        if (throwable instanceof RetrofitException) {
+            if (((RetrofitException) throwable).getKind() == RetrofitException.Kind.NETWORK && isShowErrorView()) {
+                showNetWorkErrorView();
+            }
+        }
     }
 
-    public boolean isShowRefreshView() {
+    public boolean isShowLoadingView() {
         return true;
     }
 
@@ -109,10 +115,11 @@ public abstract class BaseLoadDataFragment<T> extends BaseFragment implements Sw
     public void handleResult(T t) {
         //如果数据是空的并且isShowEmptyView为true,则显示
         if (isEmpty(t) && isShowEmptyView()) {
-            // mStateView.showEmpty("没有数据");
+            mStateView.showEmpty("没有数据");
             return;
         }
-        //    mStateView.showContent();
+        mSwipeRefreshLayout.setEnabled(true);
+        mStateView.showContent();
     }
 
     public void handleComplete() {

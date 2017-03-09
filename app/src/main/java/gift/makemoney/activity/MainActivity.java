@@ -1,11 +1,11 @@
 package gift.makemoney.activity;
 
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.View;
 
 import butterknife.BindView;
 import gift.makemoney.R;
@@ -18,6 +18,7 @@ import gift.makemoney.fragment.TestFragment;
 public class MainActivity extends BaseActivity {
 
     @BindView(R.id.drawerLayout) DrawerLayout mDrawerLayout;
+    ActionBarDrawerToggle mDrawerToggle;
 
     @Override
     public int getLayout() {
@@ -26,21 +27,21 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void setupToolBar() {
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, mDrawerLayout, mToolBar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolBar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+    }
 
-            }
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mDrawerToggle.syncState();
+    }
 
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-            }
-        };
-        mDrawerLayout.setDrawerListener(toggle);
-        toggle.syncState();
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
     @Override
