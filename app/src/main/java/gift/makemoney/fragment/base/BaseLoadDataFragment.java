@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.View;
 
 import butterknife.BindView;
@@ -23,12 +24,13 @@ import rx.subscriptions.CompositeSubscription;
  */
 public abstract class BaseLoadDataFragment<T> extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
+    public static final String TAG = BaseLoadDataFragment.class.getSimpleName();
+
     @BindView(R.id.state_view) StateView mStateView;
     @BindView(R.id.swipeRefreshLayout) SwipeRefreshLayout mSwipeRefreshLayout;
-
-
+    //是否正在加载数据
+    protected boolean isLoading = false;
     private Handler mHandler;
-
 
     private Runnable mDeplayedLoadDataTask = () -> getData();
 
@@ -55,6 +57,10 @@ public abstract class BaseLoadDataFragment<T> extends BaseFragment implements Sw
     }
 
     public void getData() {
+        if(isLoading){
+            return;
+        }
+        isLoading = true;
         if (isShowLoadingView()) {
             mStateView.showLoading();
             mSwipeRefreshLayout.setEnabled(false);
@@ -79,21 +85,14 @@ public abstract class BaseLoadDataFragment<T> extends BaseFragment implements Sw
         }
     }
 
-    //
-    public void handleError(Throwable throwable) {
-        if (throwable instanceof RetrofitException) {
-            if (((RetrofitException) throwable).getKind() == RetrofitException.Kind.NETWORK && isShowErrorView()) {
-                showNetWorkErrorView();
-            }
-        }
-    }
+
 
     public boolean isShowLoadingView() {
         return true;
     }
 
     /**
-     * 是否显示ErrorView 当分页的时候只有当pageCount=1的时候才显示
+     * 是否显示ErrorView
      *
      * @return
      */
@@ -102,7 +101,7 @@ public abstract class BaseLoadDataFragment<T> extends BaseFragment implements Sw
     }
 
     /**
-     * 是否显示EmptyView 当分页的时候只有当pageCount=1的时候才显示
+     * 是否显示EmptyView
      *
      * @return
      */
@@ -120,9 +119,19 @@ public abstract class BaseLoadDataFragment<T> extends BaseFragment implements Sw
         }
         mSwipeRefreshLayout.setEnabled(true);
         mStateView.showContent();
+        isLoading = false;
+
     }
 
+    public void handleError(Throwable throwable) {
+        if (throwable instanceof RetrofitException) {
+            if (((RetrofitException) throwable).getKind() == RetrofitException.Kind.NETWORK && isShowErrorView()) {
+                showNetWorkErrorView();
+            }
+        }
+    }
     public void handleComplete() {
+        Log.e(TAG,"handleComplete");
         if (mSwipeRefreshLayout.isRefreshing()) {
             mSwipeRefreshLayout.setRefreshing(false);
         }
@@ -148,7 +157,10 @@ public abstract class BaseLoadDataFragment<T> extends BaseFragment implements Sw
 
     @Override
     public void onRefresh() {
-        mSwipeRefreshLayout.setRefreshing(true);
-        mHandler.postDelayed(mDeplayedLoadDataTask, 500);
+        //刷新数据
+        if(!isLoading) {
+            mSwipeRefreshLayout.setRefreshing(true);
+            mHandler.postDelayed(mDeplayedLoadDataTask, 500);
+        }
     }
 }

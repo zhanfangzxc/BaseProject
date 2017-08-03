@@ -16,7 +16,6 @@ import gift.makemoney.R;
 
 public abstract class BasePageListLoadDataFragment<T> extends BaseListLoadDataFragment<T> {
 
-    private boolean isLoadMore = false;
 
     protected int mPageCount = 1;
 
@@ -60,7 +59,6 @@ public abstract class BasePageListLoadDataFragment<T> extends BaseListLoadDataFr
 
     @Override
     public void handleResult(List<T> list) {
-        isLoadMore = false;
         isLoadAllFinish = list.size() < PAGE_SIZE;
         super.handleResult(list);
         mPageCount++;//页数增加
@@ -69,13 +67,11 @@ public abstract class BasePageListLoadDataFragment<T> extends BaseListLoadDataFr
     @Override
     public void handleError(Throwable throwable) {
         super.handleError(throwable);
-
     }
 
     @Override
     public void handleComplete() {
         super.handleComplete();
-        isLoadMore = false;
         if (mAdapter.hasFooter()) {
             mAdapter.removeFooter(mFooterView);
         }
@@ -95,7 +91,6 @@ public abstract class BasePageListLoadDataFragment<T> extends BaseListLoadDataFr
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
             }
-
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
@@ -103,8 +98,7 @@ public abstract class BasePageListLoadDataFragment<T> extends BaseListLoadDataFr
                 int totalItemCount = recyclerView.getLayoutManager().getItemCount();
                 int firstVisibleItem = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && totalItemCount - visibleItemCount == firstVisibleItem) {
-                    if (!isLoadAllFinish && !isLoadMore) {
-                        isLoadMore = true;
+                    if (!isLoadAllFinish && !isLoading) {
                         if (!mAdapter.hasFooter()) {
                             mAdapter.addFooter(mFooterView);
                         }
