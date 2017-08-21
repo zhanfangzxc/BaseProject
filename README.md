@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 ###项目结构
 
 * adapter
@@ -25,10 +25,3 @@
 * 数据库
     * https://www.cnblogs.com/whoislcj/p/5651396.html
 
-
-
-
-=======
-# BaseProject
-基础框架
->>>>>>> d85ef4189fa18d1a096f8d112d5d9f27345bf337
